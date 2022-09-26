@@ -7,9 +7,14 @@ URL = "data.pr4e.org"
 PAGE = "page1.htm"
 
 headers = [f"Host: {URL}\r\n",
-             "Accept-Language: en-us\r\n",
-             "Accept-Encoding: gzip, deflate\r\n",
-             "Connection: Keep-Alive"
+             f"Accept-Language: en-us\r\n",
+             f"Accept-Encoding: gzip, deflate\r\n",
+             f"Forwarded: for={socket.gethostbyname(URL)};proto=http\r\n",
+             f"From: christopher.phillips9@snhu.edu\r\n",
+             f"Host: {socket.gethostbyname(socket.gethostname())}\r\n",
+             f"Cookie: Chris Phillips\r\n",
+             f"Referer: https://www.google.com/\r\n",
+             f"Connection: Keep-Alive"
            ]
 
 headerData = "".join(headers)
