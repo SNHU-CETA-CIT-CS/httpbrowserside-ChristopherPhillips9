@@ -16,7 +16,18 @@ class MyServer(BaseHTTPRequestHandler):
         try:
             with open(filename, 'r') as requestedPageFile:
                 self.send_response(200)
+                self.send_header("Access-Control-Allow-Headers", "*")
+                self.send_header("Access-Control-Allow-Origin", "*")
+                self.send_header("Cache-Control", "max-age=3600")
+                self.send_header("Connection", "")
+                self.send_header("Content-Length", "0")
                 self.send_header("Content-type", "text/html")
+                self.send_header("Date", "Thu, 29 Sep 2022 14:50:00 EST")
+                self.send_header("Expires", "Thu, 15 Jun 2023 11:00:00 EST")
+                self.send_header("Last-Modified", "Thu, 29 Sep 2022 14:50:00 EST")
+                self.send_header("Server", "BaseHTTP/0.6 Python/3.10.6")
+                self.send_header("Vary", "*")
+                self.send_header("X-Cache", "deny")
                 self.end_headers()
                 for line in requestedPageFile.readlines():
                     self.wfile.write(bytes(line.strip(), "utf-8"))
